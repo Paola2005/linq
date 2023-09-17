@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\APM02-44\\practica\\linq\\linq.csproj": {}
+    "/workspaces/linq/linq.csproj": {}
   },
   "projects": {
-    "C:\\Users\\APM02-44\\practica\\linq\\linq.csproj": {
+    "/workspaces/linq/linq.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-44\\practica\\linq\\linq.csproj",
+        "projectUniqueName": "/workspaces/linq/linq.csproj",
         "projectName": "linq",
-        "projectPath": "C:\\Users\\APM02-44\\practica\\linq\\linq.csproj",
-        "packagesPath": "C:\\Users\\APM02-44\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-44\\practica\\linq\\obj\\",
+        "projectPath": "/workspaces/linq/linq.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/linq/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-44\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/dotnet/7.0.400/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }

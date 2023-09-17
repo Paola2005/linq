@@ -64,7 +64,31 @@ public class LinqQueries
         return from book in lstBooks where book.PageCount > 450 orderby book.PageCount descending select book;
     }
 
-    /*   public IEnumerable <Books> take(){
-          return from book in lstBooks where book.PublishedDate.
+     public IEnumerable <Books> take(){
+          return lstBooks
+        .Where(book => book.Categories.Contains("Java"))
+        .OrderByDescending(book => book.PublishedDate)
+        .Take(3);
+      } 
+      public IEnumerable <Books> skip(){
+        return lstBooks
+        .Where(book => book.PageCount>400)
+        .Take(4)
+        .Skip(2);
+      }
+      public IEnumerable <Books> select(){
+        return lstBooks.Take(3)
+        .Select(book=> new Books{Title=book.Title,PageCount=book.PageCount});
+      }
+
+      /* public int contador(){
+        return lstBooks
+        .Count(book=>book.PageCount>=200 && book.PageCount<=500);
+      }
+      public long longitud(){
+        return lstBooks
+        .LongCount(book=>book.PageCount>=200 && book.PageCount<=500);
       } */
+
+      
 }
