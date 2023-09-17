@@ -12,7 +12,7 @@ internal class Program
         {
             Console.WriteLine("No Hya ningun libro publicado en 2005");
         } */
-        ImprimirValores(queries.contador());
+        ImprimirValores(queries.Join());
 
 
     }

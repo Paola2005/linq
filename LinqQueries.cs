@@ -64,31 +64,97 @@ public class LinqQueries
         return from book in lstBooks where book.PageCount > 450 orderby book.PageCount descending select book;
     }
 
-     public IEnumerable <Books> take(){
-          return lstBooks
-        .Where(book => book.Categories.Contains("Java"))
-        .OrderByDescending(book => book.PublishedDate)
-        .Take(3);
-      } 
-      public IEnumerable <Books> skip(){
+    public IEnumerable<Books> take()
+    {
         return lstBooks
-        .Where(book => book.PageCount>400)
+      .Where(book => book.Categories.Contains("Java"))
+      .OrderByDescending(book => book.PublishedDate)
+      .Take(3);
+    }
+    public IEnumerable<Books> skip()
+    {
+        return lstBooks
+        .Where(book => book.PageCount > 400)
         .Take(4)
         .Skip(2);
-      }
-      public IEnumerable <Books> select(){
+    }
+    public IEnumerable<Books> select()
+    {
         return lstBooks.Take(3)
-        .Select(book=> new Books{Title=book.Title,PageCount=book.PageCount});
-      }
+        .Select(book => new Books { Title = book.Title, PageCount = book.PageCount });
+    }
 
-      /* public int contador(){
+    /* public int contador(){
+      return lstBooks
+      .Count(book=>book.PageCount>=200 && book.PageCount<=500);
+    }
+    public long longitud(){
+      return lstBooks
+      .LongCount(book=>book.PageCount>=200 && book.PageCount<=500);
+    } */
+    /*  public DateOnly  Minim(){
+         return lstBooks.Min(book=>book.PublishedDate);
+     } */
+    public IEnumerable<Books> Minimo()
+    {
+        var Fecha = lstBooks.Min(libro => libro.PublishedDate);
+        return lstBooks.Where(libro => libro.PublishedDate == Fecha);
+    }
+    public IEnumerable<Books> Maximo()
+    {
+        var Fecha = lstBooks.Max(libro => libro.PublishedDate);
+        return lstBooks.Where(libro => libro.PublishedDate == Fecha);
+    }
+    public Books MayorCero()
+    {
+        IEnumerable<Books> enumerable = lstBooks.Where(book => book.PageCount > 0);
+        return enumerable.MinBy(myBook => myBook.PageCount) ?? new Books();
+    }
+    public Books FechaReciente()
+    {
         return lstBooks
-        .Count(book=>book.PageCount>=200 && book.PageCount<=500);
-      }
-      public long longitud(){
-        return lstBooks
-        .LongCount(book=>book.PageCount>=200 && book.PageCount<=500);
-      } */
+        .MaxBy(myBook => myBook.PublishedDate) ?? new Books();
+    }
+    public int Sum()
+    {
+        return lstBooks.Where(book => book.PageCount > 0 && book.PageCount <= 500)
+        .Sum(myBook => myBook.PageCount);
+    }
 
-      
+    public string Titulo2015()
+    {
+        return lstBooks.Where(book => book.PublishedDate.Year > 2015)
+        .Aggregate("", (titulos, next) =>
+        {
+            if (titulos != string.Empty)
+            {
+                titulos += "-" + next.Title;
+            }
+            else
+            {
+                titulos += next.Title;
+            }
+            return titulos;
+        });
+    }
+
+    public double Average()
+    {
+        return lstBooks.Average(book => (book.Title ?? string.Empty).Length);
+
+    }
+
+    public IEnumerable<IGrouping<int, Books>> agrupacion()
+    {
+        return lstBooks.Where(book => book.PublishedDate.Year >= 2000)
+        .GroupBy(mybook => mybook.PublishedDate.Year);
+    }
+    public ILookup<char,Books> Libros(){
+        return lstBooks.ToLookup(book=>book.Title?[0]??default(char),book=>book);
+    }
+    public IEnumerable<Books> Join(){
+        var Join1=lstBooks.Where(b=>b.PublishedDate.Year>2005);
+        var Join2=lstBooks.Where(b=>b.PageCount>500);
+        return Join1.Join(Join2,p=>p.Title,x=>x.Title,(p,x)=>p);
+    }
 }
